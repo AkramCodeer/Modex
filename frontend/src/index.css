@@ -123,7 +123,6 @@ code {
   background-color: var(--gray-100);
   padding: 0.125rem 0.25rem;
   border-radius: var(--border-radius-sm);
-}
   display: inline-flex;
   border-radius: 4px;
   color: var(--text-h);
