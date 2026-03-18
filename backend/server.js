@@ -22,14 +22,29 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.CLIENT_URL || "https://modex-2ev2.vercel.app/",
-  credentials: true,
-}));
+
+// CORS - allow the frontend origin(s)
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "https://modex-2ev2.vercel.app",
+  "https://modex-qsow.onrender.com",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. curl, mobile apps)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, // 15 
   max: 100, // 100 requests per windowMs
   message: "Too many requests from this IP, please try again later.",
 });
