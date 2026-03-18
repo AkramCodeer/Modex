@@ -1,0 +1,82 @@
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+/* Size variants */
+.status-badge-sm {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.status-badge-md {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.status-badge-lg {
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+}
+
+/* Status color variants */
+.status-confirmed {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.status-confirmed:hover {
+  background-color: rgba(40, 167, 69, 0.2);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.status-pending {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.status-pending:hover {
+  background-color: rgba(255, 193, 7, 0.2);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.status-cancelled {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.status-cancelled:hover {
+  background-color: rgba(220, 53, 69, 0.2);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.status-completed {
+  background-color: rgba(23, 162, 184, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(23, 162, 184, 0.2);
+}
+
+.status-completed:hover {
+  background-color: rgba(23, 162, 184, 0.2);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.status-default {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+
+.status-default:hover {
+  background-color: var(--gray-200);
+  box-shadow: var(--box-shadow-sm);
+}

@@ -1,0 +1,218 @@
+/* ============================================================
+   MedBook — Toast Notifications
+   Theme: Clinical Luxury · Deep Navy + Champagne Gold
+   Enters from: bottom-right
+   ============================================================ */
+
+/* ── Container ── */
+.toast-container {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* ── Individual toast ── */
+.toast {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 280px;
+  max-width: 380px;
+  padding: 0.875rem 1rem 0.875rem 1.1rem;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  position: relative;
+  overflow: hidden;
+
+  /* glass-card base */
+  background: #162236;
+  border: 1px solid rgba(201,168,76,.18);
+  box-shadow:
+    0 2px 6px rgba(13,27,42,.25),
+    0 10px 32px rgba(13,27,42,.3),
+    inset 0 1px 0 rgba(255,255,255,.06);
+
+  /* slide-up entrance */
+  animation: toastIn .38s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* exit — add class "toast-exit" via JS if you want animated removal */
+.toast-exit {
+  animation: toastOut .3s cubic-bezier(.4,0,.6,1) forwards;
+}
+
+/* left accent bar (color per type) */
+.toast::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.6rem; bottom: 0.6rem;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+/* shimmer sweep on enter */
+.toast::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.05) 50%, transparent 70%);
+  animation: toastShimmer .55s ease forwards;
+  pointer-events: none;
+}
+
+/* ── Type variants ── */
+
+/* SUCCESS — gold */
+.toast-success {
+  border-color: rgba(201,168,76,.3);
+}
+.toast-success::before {
+  background: linear-gradient(180deg, #c9a84c, #e2c97e, #c9a84c);
+}
+.toast-success .toast-icon {
+  background: rgba(201,168,76,.15);
+  color: #c9a84c;
+  border: 1px solid rgba(201,168,76,.3);
+}
+
+/* ERROR — warm red */
+.toast-error {
+  border-color: rgba(184,64,64,.3);
+}
+.toast-error::before {
+  background: linear-gradient(180deg, #b84040, #d46060, #b84040);
+}
+.toast-error .toast-icon {
+  background: rgba(184,64,64,.15);
+  color: #d46060;
+  border: 1px solid rgba(184,64,64,.3);
+}
+
+/* WARNING — amber */
+.toast-warning {
+  border-color: rgba(176,125,44,.3);
+}
+.toast-warning::before {
+  background: linear-gradient(180deg, #b07d2c, #d4a050, #b07d2c);
+}
+.toast-warning .toast-icon {
+  background: rgba(176,125,44,.15);
+  color: #d4a050;
+  border: 1px solid rgba(176,125,44,.3);
+}
+
+/* INFO — teal */
+.toast-info {
+  border-color: rgba(42,143,160,.3);
+}
+.toast-info::before {
+  background: linear-gradient(180deg, #2a8fa0, #4ab8cc, #2a8fa0);
+}
+.toast-info .toast-icon {
+  background: rgba(42,143,160,.15);
+  color: #4ab8cc;
+  border: 1px solid rgba(42,143,160,.3);
+}
+
+/* ── Icon badge ── */
+.toast-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── Message ── */
+.toast-message {
+  flex: 1;
+  color: rgba(250,248,243,.92);
+  font-size: 0.875rem;
+  letter-spacing: .01em;
+}
+
+/* ── Close button ── */
+.toast-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: rgba(250,248,243,.35);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 0 0.25rem;
+  transition: color .18s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+}
+
+.toast-close:hover {
+  color: rgba(250,248,243,.8);
+  background: rgba(255,255,255,.07);
+}
+
+/* ── Animations ── */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(110%) scale(.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 80px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(110%) scale(.95);
+    max-height: 0;
+    margin-bottom: -.65rem;
+  }
+}
+
+@keyframes toastShimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .toast-container {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    align-items: stretch;
+  }
+
+  .toast {
+    min-width: unset;
+    max-width: 100%;
+  }
+}
